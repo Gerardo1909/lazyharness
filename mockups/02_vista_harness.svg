@@ -1,0 +1,68 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" font-family="JetBrains Mono, Menlo, monospace" font-size="14">
+  <rect width="1200" height="760" fill="#16161e"/>
+
+  <!-- header -->
+  <text x="16" y="22" fill="#565f89">lazyharness · <tspan fill="#c0caf5">dev-flow</tspan> @ ~/dev/shop-api · <tspan fill="#9ece6a">limpio</tspan> (último commit a3f91c2)</text>
+
+  <!-- sidebar: roles -->
+  <rect x="12" y="34" width="300" height="430" fill="#1a1b26" stroke="#7aa2f7" stroke-width="1.5" rx="4"/>
+  <text x="26" y="30" fill="#7aa2f7">┤ Roles ├</text>
+
+  <rect x="16" y="48" width="292" height="24" fill="#283457"/>
+  <text x="28" y="66" fill="#f7768e" font-weight="bold">● arquitecto</text>
+  <text x="28" y="92" fill="#565f89">├─</text>
+  <text x="58" y="92" fill="#e0af68">● code-reviewer</text>
+  <text x="28" y="116" fill="#565f89">├─</text>
+  <text x="58" y="116" fill="#9ece6a">● dev-backend</text>
+  <text x="28" y="140" fill="#565f89">├─</text>
+  <text x="58" y="140" fill="#7dcfff">● dev-frontend</text>
+  <text x="28" y="164" fill="#565f89">└─</text>
+  <text x="58" y="164" fill="#bb9af7">● docs</text>
+
+  <!-- sidebar: workflow -->
+  <rect x="12" y="478" width="300" height="232" fill="#1a1b26" stroke="#3b4261" stroke-width="1.5" rx="4"/>
+  <text x="26" y="474" fill="#565f89">┤ Workflow ├</text>
+  <text x="28" y="506" fill="#565f89">orden sugerido:</text>
+  <text x="28" y="532" fill="#f7768e">1. arquitecto</text>
+  <text x="28" y="554" fill="#e0af68">2. code-reviewer</text>
+  <text x="28" y="576" fill="#9ece6a">3. dev-backend</text>
+  <text x="28" y="598" fill="#7dcfff">   dev-frontend</text>
+  <text x="28" y="620" fill="#bb9af7">4. docs</text>
+  <text x="28" y="652" fill="#565f89">no es obligatorio,</text>
+  <text x="28" y="670" fill="#565f89">es una guía.</text>
+
+  <!-- main panel: prompt read-only -->
+  <rect x="324" y="34" width="864" height="560" fill="#1a1b26" stroke="#3b4261" stroke-width="1.5" rx="4"/>
+  <text x="338" y="30" fill="#565f89">┤ arquitecto.xml · <tspan fill="#7dcfff">solo lectura</tspan> · v14 ├</text>
+
+  <text x="342" y="66" fill="#565f89">&lt;role&gt;</text>
+  <text x="362" y="90" fill="#c0caf5">Sos el arquitecto del proyecto. Liderás el diseño de cada feature:</text>
+  <text x="362" y="112" fill="#c0caf5">analizás el código existente, proponés un plan de implementación y</text>
+  <text x="362" y="134" fill="#c0caf5">lo dividís en pasos chicos y verificables.</text>
+  <text x="342" y="158" fill="#565f89">&lt;/role&gt;</text>
+
+  <text x="342" y="194" fill="#565f89">&lt;workflow&gt;</text>
+  <text x="362" y="218" fill="#c0caf5">Antes de dar un plan por cerrado, pedile revisión a <tspan fill="#e0af68" font-weight="bold">@code-reviewer</tspan>.</text>
+  <text x="362" y="240" fill="#c0caf5">Si el plan toca la API, delegá la implementación en <tspan fill="#9ece6a" font-weight="bold">@dev-backend</tspan>;</text>
+  <text x="362" y="262" fill="#c0caf5">si toca UI, en <tspan fill="#7dcfff" font-weight="bold">@dev-frontend</tspan>. Al cerrar, registrá un informe</text>
+  <text x="362" y="284" fill="#c0caf5">en tareas.json y avisá a <tspan fill="#bb9af7" font-weight="bold">@docs</tspan> si hubo decisiones de diseño.</text>
+  <text x="342" y="308" fill="#565f89">&lt;/workflow&gt;</text>
+
+  <text x="342" y="344" fill="#565f89">&lt;constraints&gt;</text>
+  <text x="362" y="368" fill="#c0caf5">- Nunca implementes vos: tu salida es siempre un plan.</text>
+  <text x="362" y="390" fill="#c0caf5">- Preferí cambios incrementales sobre refactors grandes.</text>
+  <text x="342" y="414" fill="#565f89">&lt;/constraints&gt;</text>
+
+  <!-- action bar -->
+  <rect x="324" y="608" width="864" height="56" fill="#1a1b26" stroke="#3b4261" stroke-width="1.5" rx="4"/>
+  <text x="338" y="604" fill="#565f89">┤ Acciones ├</text>
+  <text x="342" y="630" fill="#c0caf5"><tspan fill="#7aa2f7">e</tspan> editar   <tspan fill="#7aa2f7">x</tspan> eliminar   <tspan fill="#1a1b26"> </tspan></text>
+  <rect x="560" y="614" width="110" height="24" fill="#283457"/>
+  <text x="568" y="630" fill="#c0caf5"><tspan fill="#7aa2f7">m</tspan> mejorar</text>
+  <text x="690" y="630" fill="#c0caf5"><tspan fill="#7aa2f7">h</tspan> historial   <tspan fill="#7aa2f7">i</tspan> invocar</text>
+  <text x="342" y="654" fill="#e0af68">mejorar: agente en background revisa y alinea todos los prompts. Consume tokens; propone un diff, no aplica solo.</text>
+
+  <!-- keybar -->
+  <rect x="0" y="722" width="1200" height="38" fill="#1a1b26"/>
+  <text x="16" y="746" fill="#565f89"><tspan fill="#7aa2f7">↑↓/jk</tspan>: roles  <tspan fill="#7aa2f7">tab</tspan>: cambiar panel  <tspan fill="#7aa2f7">s</tspan>: guardar (commit)  <tspan fill="#7aa2f7">t</tspan>: tareas  <tspan fill="#7aa2f7">esc</tspan>: volver  <tspan fill="#7aa2f7">q</tspan>: salir</text>
+</svg>

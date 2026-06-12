@@ -1,0 +1,59 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" font-family="JetBrains Mono, Menlo, monospace" font-size="14">
+  <rect width="1200" height="760" fill="#16161e"/>
+
+  <!-- title -->
+  <text x="16" y="22" fill="#565f89">lazyharness 0.1.0 — pantalla inicial</text>
+
+  <!-- left panel: harnesses -->
+  <rect x="12" y="34" width="350" height="676" fill="#1a1b26" stroke="#7aa2f7" stroke-width="1.5" rx="4"/>
+  <text x="26" y="30" fill="#7aa2f7">┤ Harnesses ├</text>
+  <rect x="26" y="30" width="118" height="0" fill="#1a1b26"/>
+
+  <!-- selected item -->
+  <rect x="16" y="50" width="342" height="44" fill="#283457"/>
+  <text x="28" y="68" fill="#c0caf5" font-weight="bold">dev-flow</text>
+  <text x="28" y="86" fill="#565f89">~/dev/shop-api</text>
+
+  <text x="28" y="118" fill="#c0caf5">data-pipeline</text>
+  <text x="28" y="136" fill="#565f89">~/dev/etl-ventas</text>
+
+  <text x="28" y="168" fill="#c0caf5">blog-writer</text>
+  <text x="28" y="186" fill="#565f89">~/personal/blog</text>
+
+  <text x="28" y="218" fill="#c0caf5">infra-ops</text>
+  <text x="28" y="236" fill="#565f89">~/trabajo/k8s-cluster</text>
+
+  <!-- right panel: preview -->
+  <rect x="374" y="34" width="814" height="676" fill="#1a1b26" stroke="#3b4261" stroke-width="1.5" rx="4"/>
+  <text x="388" y="30" fill="#565f89">┤ Detalle ├</text>
+
+  <text x="392" y="66" fill="#c0caf5" font-size="16" font-weight="bold">dev-flow</text>
+  <text x="392" y="88" fill="#565f89">~/dev/shop-api/.lazyharness · formato: xml · provider: anthropic / claude-opus-4-7</text>
+
+  <text x="392" y="124" fill="#7aa2f7">Roles (5)</text>
+  <text x="392" y="148" fill="#f7768e">● arquitecto</text>
+  <text x="540" y="148" fill="#565f89">lidera el plan, invoca a los demás</text>
+  <text x="392" y="170" fill="#e0af68">● code-reviewer</text>
+  <text x="540" y="170" fill="#565f89">revisa planes y features</text>
+  <text x="392" y="192" fill="#9ece6a">● dev-backend</text>
+  <text x="540" y="192" fill="#565f89">implementa API y modelos</text>
+  <text x="392" y="214" fill="#7dcfff">● dev-frontend</text>
+  <text x="540" y="214" fill="#565f89">implementa UI</text>
+  <text x="392" y="236" fill="#bb9af7">● docs</text>
+  <text x="540" y="236" fill="#565f89">documenta decisiones</text>
+
+  <text x="392" y="276" fill="#7aa2f7">Workflow sugerido</text>
+  <text x="392" y="300" fill="#c0caf5"><tspan fill="#f7768e">arquitecto</tspan> → <tspan fill="#e0af68">code-reviewer</tspan> → <tspan fill="#9ece6a">dev-backend</tspan> / <tspan fill="#7dcfff">dev-frontend</tspan> → <tspan fill="#bb9af7">docs</tspan></text>
+  <text x="392" y="322" fill="#565f89">(informativo: podés invocar cualquier rol directo)</text>
+
+  <text x="392" y="362" fill="#7aa2f7">Último commit</text>
+  <text x="392" y="386" fill="#c0caf5">a3f91c2  "endurezco criterios del reviewer"</text>
+  <text x="392" y="408" fill="#565f89">hace 2 días · 14 commits en total</text>
+
+  <text x="392" y="448" fill="#7aa2f7">Tareas</text>
+  <text x="392" y="472" fill="#c0caf5">2 en curso · 11 hechas · tareas.json</text>
+
+  <!-- keybar -->
+  <rect x="0" y="722" width="1200" height="38" fill="#1a1b26"/>
+  <text x="16" y="746" fill="#565f89"><tspan fill="#7aa2f7">n</tspan>: nuevo harness  <tspan fill="#7aa2f7">enter</tspan>: abrir  <tspan fill="#7aa2f7">d</tspan>: eliminar  <tspan fill="#7aa2f7">↑↓/jk</tspan>: navegar  <tspan fill="#7aa2f7">?</tspan>: ayuda  <tspan fill="#7aa2f7">q</tspan>: salir</text>
+</svg>

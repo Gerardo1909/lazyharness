@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" font-family="JetBrains Mono, Menlo, monospace" font-size="14">
+  <rect width="1200" height="760" fill="#16161e"/>
+
+  <!-- header -->
+  <text x="16" y="22" fill="#565f89">lazyharness · <tspan fill="#c0caf5">dev-flow</tspan> @ ~/dev/shop-api · rol activo: <tspan fill="#f7768e" font-weight="bold">arquitecto</tspan> ⇄ <tspan fill="#7dcfff">claude-opus-4-7 / anthropic</tspan></text>
+
+  <!-- left: roles -->
+  <rect x="12" y="34" width="270" height="300" fill="#1a1b26" stroke="#3b4261" stroke-width="1.5" rx="4"/>
+  <text x="26" y="30" fill="#565f89">┤ Roles ├</text>
+  <rect x="16" y="48" width="262" height="24" fill="#283457"/>
+  <text x="28" y="66" fill="#f7768e" font-weight="bold">● arquitecto</text>
+  <text x="28" y="92" fill="#e0af68">● code-reviewer</text>
+  <text x="28" y="116" fill="#9ece6a">● dev-backend</text>
+  <text x="28" y="140" fill="#7dcfff">● dev-frontend</text>
+  <text x="28" y="164" fill="#bb9af7">● docs</text>
+
+  <!-- left: sessions -->
+  <rect x="12" y="348" width="270" height="362" fill="#1a1b26" stroke="#3b4261" stroke-width="1.5" rx="4"/>
+  <text x="26" y="344" fill="#565f89">┤ Sesiones ├</text>
+  <rect x="16" y="362" width="262" height="42" fill="#283457"/>
+  <text x="28" y="380" fill="#c0caf5">#14 plan auth refresh</text>
+  <text x="28" y="398" fill="#565f89"><tspan fill="#f7768e">arquitecto</tspan> · hace 5 min</text>
+  <text x="28" y="430" fill="#c0caf5">#13 revisión PR checkout</text>
+  <text x="28" y="448" fill="#565f89"><tspan fill="#e0af68">code-reviewer</tspan> · ayer</text>
+  <text x="28" y="480" fill="#c0caf5">#12 endpoint /orders</text>
+  <text x="28" y="498" fill="#565f89"><tspan fill="#9ece6a">dev-backend</tspan> · hace 3 días</text>
+
+  <!-- center: delegated session -->
+  <rect x="294" y="34" width="560" height="676" fill="#1a1b26" stroke="#7aa2f7" stroke-width="1.5" rx="4"/>
+  <text x="308" y="30" fill="#7aa2f7">┤ Sesión #14 · delegada a claude code ├</text>
+
+  <text x="312" y="66" fill="#565f89">vos ▸ <tspan fill="#c0caf5">necesito agregar refresh tokens al login, armá el plan</tspan></text>
+
+  <text x="312" y="100" fill="#f7768e">arquitecto ▸</text>
+  <text x="312" y="124" fill="#c0caf5">Leí src/auth/. Plan propuesto:</text>
+  <text x="312" y="150" fill="#c0caf5">1. Tabla refresh_tokens con rotación</text>
+  <text x="312" y="172" fill="#c0caf5">2. Endpoint POST /auth/refresh</text>
+  <text x="312" y="194" fill="#c0caf5">3. Expirar access token a 15 min</text>
+  <text x="312" y="228" fill="#c0caf5">Sugiero pasarlo por <tspan fill="#e0af68" font-weight="bold">@code-reviewer</tspan> antes de</text>
+  <text x="312" y="250" fill="#c0caf5">delegar en <tspan fill="#9ece6a" font-weight="bold">@dev-backend</tspan>. Registré la tarea T-21.</text>
+
+  <text x="312" y="284" fill="#565f89">── la jerarquía sugiere: <tspan fill="#e0af68">code-reviewer</tspan> · presioná <tspan fill="#7aa2f7">g</tspan> para saltar con contexto ──</text>
+
+  <rect x="298" y="660" width="552" height="36" fill="#1f2335" stroke="#3b4261" rx="4"/>
+  <text x="312" y="684" fill="#565f89">▸ <tspan fill="#c0caf5">escribile al arquitecto…█</tspan></text>
+
+  <!-- right: tasks -->
+  <rect x="866" y="34" width="322" height="676" fill="#1a1b26" stroke="#3b4261" stroke-width="1.5" rx="4"/>
+  <text x="880" y="30" fill="#565f89">┤ Tareas · tareas.json ├</text>
+
+  <text x="884" y="66" fill="#e0af68">[en curso] T-21</text>
+  <text x="884" y="86" fill="#c0caf5">plan refresh tokens</text>
+  <text x="884" y="104" fill="#565f89"><tspan fill="#f7768e">arquitecto</tspan> · hoy</text>
+
+  <text x="884" y="138" fill="#e0af68">[en curso] T-20</text>
+  <text x="884" y="158" fill="#c0caf5">fix carrito duplicado</text>
+  <text x="884" y="176" fill="#565f89"><tspan fill="#9ece6a">dev-backend</tspan> · ayer</text>
+
+  <text x="884" y="210" fill="#9ece6a">[hecha] T-19</text>
+  <text x="884" y="230" fill="#c0caf5">informe revisión PR#12</text>
+  <text x="884" y="248" fill="#565f89"><tspan fill="#e0af68">code-reviewer</tspan> · ayer</text>
+
+  <text x="884" y="282" fill="#9ece6a">[hecha] T-18</text>
+  <text x="884" y="302" fill="#c0caf5">documentar decisión JWT</text>
+  <text x="884" y="320" fill="#565f89"><tspan fill="#bb9af7">docs</tspan> · hace 4 días</text>
+
+  <text x="884" y="356" fill="#565f89">enter: ver informe</text>
+  <text x="884" y="376" fill="#565f89">e: editar · x: borrar</text>
+  <text x="884" y="396" fill="#565f89">(es un json, también podés</text>
+  <text x="884" y="414" fill="#565f89">editarlo con tu editor)</text>
+
+  <!-- keybar -->
+  <rect x="0" y="722" width="1200" height="38" fill="#1a1b26"/>
+  <text x="16" y="746" fill="#565f89"><tspan fill="#7aa2f7">i</tspan>: invocar rol  <tspan fill="#7aa2f7">r</tspan>: retomar sesión  <tspan fill="#7aa2f7">g</tspan>: saltar a rol sugerido  <tspan fill="#7aa2f7">tab</tspan>: panel  <tspan fill="#7aa2f7">esc</tspan>: volver al harness</text>
+</svg>

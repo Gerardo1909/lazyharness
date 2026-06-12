@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760" font-family="JetBrains Mono, Menlo, monospace" font-size="14">
+  <rect width="1200" height="760" fill="#16161e"/>
+
+  <!-- header -->
+  <text x="16" y="22" fill="#565f89">lazyharness · <tspan fill="#c0caf5">dev-flow</tspan> · historial de <tspan fill="#e0af68" font-weight="bold">code-reviewer</tspan> (filtrado por rol)</text>
+
+  <!-- left: commits for this role -->
+  <rect x="12" y="34" width="430" height="676" fill="#1a1b26" stroke="#7aa2f7" stroke-width="1.5" rx="4"/>
+  <text x="26" y="30" fill="#7aa2f7">┤ Versiones · code-reviewer.xml ├</text>
+
+  <text x="28" y="66" fill="#9ece6a">a3f91c2 <tspan fill="#c0caf5">endurezco criterios del reviewer</tspan></text>
+  <text x="96" y="86" fill="#565f89">hace 2 días · actual (v8)</text>
+
+  <rect x="16" y="100" width="422" height="44" fill="#283457"/>
+  <text x="28" y="118" fill="#9ece6a">8c20d11 <tspan fill="#c0caf5">agrego categorías crítico/mejora/nit</tspan></text>
+  <text x="96" y="138" fill="#565f89">hace 1 semana · v7 ← seleccionada</text>
+
+  <text x="28" y="170" fill="#9ece6a">f4e7a90 <tspan fill="#c0caf5">reviewer ya no bloquea, solo sugiere</tspan></text>
+  <text x="96" y="190" fill="#565f89">hace 2 semanas · v6</text>
+
+  <text x="28" y="222" fill="#9ece6a">19bb3c4 <tspan fill="#c0caf5">mejorado por agente (alineación)</tspan></text>
+  <text x="96" y="242" fill="#565f89">hace 3 semanas · v5</text>
+
+  <text x="28" y="274" fill="#9ece6a">02d8e7f <tspan fill="#c0caf5">primera versión del reviewer</tspan></text>
+  <text x="96" y="294" fill="#565f89">hace 1 mes · v1</text>
+
+  <!-- right: diff preview -->
+  <rect x="454" y="34" width="734" height="560" fill="#1a1b26" stroke="#3b4261" stroke-width="1.5" rx="4"/>
+  <text x="468" y="30" fill="#565f89">┤ Diff · actual (v8) vs seleccionada (v7) ├</text>
+
+  <text x="472" y="66" fill="#7dcfff">@@ &lt;output&gt; @@</text>
+  <text x="472" y="92" fill="#565f89">  Devolvé una lista priorizada: [crítico] [mejora] [nit].</text>
+  <text x="472" y="118" fill="#f7768e">- Rechazá el plan completo si encontrás más de un crítico.</text>
+  <text x="472" y="140" fill="#f7768e">- Exigí tests para todo cambio, sin excepciones.</text>
+  <text x="472" y="166" fill="#9ece6a">+ Marcá los críticos con claridad; la decisión final es del</text>
+  <text x="472" y="188" fill="#9ece6a">+ @arquitecto.</text>
+  <text x="472" y="218" fill="#565f89">  Registrá un informe corto en tareas.json al terminar.</text>
+
+  <text x="472" y="262" fill="#565f89">restaurar v7 toca solo este archivo: los demás roles no cambian.</text>
+  <text x="472" y="284" fill="#565f89">se crea un commit nuevo ("restauro code-reviewer a v7"), nunca</text>
+  <text x="472" y="306" fill="#565f89">se reescribe el historial.</text>
+
+  <!-- confirm dialog -->
+  <rect x="560" y="380" width="520" height="130" fill="#1f2335" stroke="#e0af68" stroke-width="1.5" rx="4"/>
+  <text x="574" y="376" fill="#e0af68">┤ Confirmar restauración ├</text>
+  <text x="578" y="412" fill="#c0caf5">Restaurar <tspan fill="#e0af68">code-reviewer.xml</tspan> a la versión v7 (8c20d11)?</text>
+  <text x="578" y="438" fill="#565f89">mensaje del commit:</text>
+  <text x="578" y="462" fill="#c0caf5">▸ restauro reviewer a v7, el modo estricto generaba fricción█</text>
+  <text x="578" y="492" fill="#565f89"><tspan fill="#9ece6a">enter</tspan>: confirmar   <tspan fill="#f7768e">esc</tspan>: cancelar</text>
+
+  <!-- action bar -->
+  <rect x="454" y="608" width="734" height="56" fill="#1a1b26" stroke="#3b4261" stroke-width="1.5" rx="4"/>
+  <text x="468" y="604" fill="#565f89">┤ Acciones ├</text>
+  <text x="472" y="634" fill="#c0caf5"><tspan fill="#7aa2f7">enter</tspan> ver diff   <tspan fill="#7aa2f7">R</tspan> restaurar esta versión   <tspan fill="#7aa2f7">a</tspan> historial de todo el harness</text>
+  <text x="472" y="656" fill="#e0af68">restaurar: rollback granular por rol; crea un commit nuevo, sin efectos sobre otros roles.</text>
+
+  <!-- keybar -->
+  <rect x="0" y="722" width="1200" height="38" fill="#1a1b26"/>
+  <text x="16" y="746" fill="#565f89"><tspan fill="#7aa2f7">↑↓/jk</tspan>: versiones  <tspan fill="#7aa2f7">tab</tspan>: panel  <tspan fill="#7aa2f7">esc</tspan>: volver al harness  <tspan fill="#7aa2f7">q</tspan>: salir</text>
+</svg>
