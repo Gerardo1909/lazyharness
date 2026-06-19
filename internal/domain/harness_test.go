@@ -4,35 +4,7 @@ import (
 	"testing"
 )
 
-func TestHarnessShouldBeCreatedWhenValidParamsSubmitted(t *testing.T) {
-	// Arrange
-	tests := []struct {
-		name        string
-		harnessName string
-		format      string
-		dir         string
-		wantErr     bool
-	}{
-		{"valido", "dev-flow", "xml", "/home/user/proj", false},
-		{"nombre vacio", "", "xml", "/home/user/proj", true},
-		{"formato invalido", "dev-flow", "yaml", "/home/user/proj", true},
-		{"dir vacio", "dev-flow", "xml", "", true},
-		{"formato md", "dev-flow", "md", "/home/user/proj", false},
-		{"formato txt", "dev-flow", "txt", "/home/user/proj", false},
-	}
-	// Act
-	for _, tt := range tests {
-		t.Run(tt.name, func(t *testing.T) {
-			_, err := NewHarness(tt.harnessName, tt.dir, tt.format)
-
-			// Assert
-			if (err != nil) != tt.wantErr {
-				t.Errorf("NewHarness() error = %v, wantErr %v", err, tt.wantErr)
-			}
-		})
-	}
-}
-
+// TESTING DE ROLES
 func TestNameShouldBeDisplayedWhenValidRoleCreated(t *testing.T) {
 	// Arrange
 	tests := []struct {
@@ -58,6 +30,71 @@ func TestNameShouldBeDisplayedWhenValidRoleCreated(t *testing.T) {
 			// Assert
 			if got != tt.expected {
 				t.Errorf("esperaba %q, obtuve %q", tt.expected, got)
+			}
+		})
+	}
+}
+
+func TestValidateRoleShouldReturnErrorWhenInvalidRoleCreated(t *testing.T) {
+	// Arrange
+	tests := []struct {
+		name    string
+		role    Role
+		wantErr bool
+	}{
+		{
+			name:    "nombre vacio",
+			role:    Role{Name: "", Color: "#f7768e"},
+			wantErr: true,
+		},
+		{
+			name:    "color no hex",
+			role:    Role{Name: "arquitecto", Color: "red"},
+			wantErr: true,
+		},
+		{
+			name:    "formato de prompt no valido",
+			role:    Role{Name: "arquitecto", Color: "#f7768e", PromptFile: "prompt.yaml"},
+			wantErr: true,
+		},
+	}
+	// Act
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			err := tt.role.validateRole()
+			// Assert
+			if (err != nil) != tt.wantErr {
+				t.Errorf("validateRole() error = %v, wantErr %v", err, tt.wantErr)
+			}
+		})
+	}
+}
+
+// TESTING DE HARNESS
+func TestHarnessShouldBeCreatedWhenValidParamsSubmitted(t *testing.T) {
+	// Arrange
+	tests := []struct {
+		name        string
+		harnessName string
+		format      string
+		dir         string
+		wantErr     bool
+	}{
+		{"valido", "dev-flow", "xml", "/home/user/proj", false},
+		{"nombre vacio", "", "xml", "/home/user/proj", true},
+		{"formato invalido", "dev-flow", "yaml", "/home/user/proj", true},
+		{"dir vacio", "dev-flow", "xml", "", true},
+		{"formato md", "dev-flow", "md", "/home/user/proj", false},
+		{"formato txt", "dev-flow", "txt", "/home/user/proj", false},
+	}
+	// Act
+	for _, tt := range tests {
+		t.Run(tt.name, func(t *testing.T) {
+			_, err := NewHarness(tt.harnessName, tt.dir, tt.format)
+
+			// Assert
+			if (err != nil) != tt.wantErr {
+				t.Errorf("NewHarness() error = %v, wantErr %v", err, tt.wantErr)
 			}
 		})
 	}
@@ -122,5 +159,23 @@ func TestFindRoleShouldReturnFalseWhenRoleDoesNotExist(t *testing.T) {
 	// Assert
 	if found {
 		t.Errorf("esperaba false por rol no existente, pero no lo obtuve")
+	}
+}
+
+func TestRoleNamesShouldReturnListOfRoleNames(t *testing.T) {
+	// Arrange
+	harness, _ := NewHarness("dev-flow", "xml", "/home/user/proj")
+	role1 := Role{Name: "arquitecto", Color: "#f7768e"}
+	role2 := Role{Name: "docs", Color: "#c0caf5"}
+	harness.AddRole(role1)
+	harness.AddRole(role2)
+	// Act
+	names := harness.RoleNames()
+	// Assert
+	expectedNames := []string{"arquitecto", "docs"}
+	for i, name := range names {
+		if name != expectedNames[i] {
+			t.Errorf("esperaba nombre de rol %q, obtuve %q", expectedNames[i], name)
+		}
 	}
 }
