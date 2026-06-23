@@ -1,77 +1,92 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"log"
+	"os"
 
-	"github.com/Gerardo1909/lazyharness/internal/domain"
+	"github.com/Gerardo1909/lazyharness/internal/tui"
+	tea "github.com/charmbracelet/bubbletea"
+	"github.com/charmbracelet/lipgloss"
 )
 
-func main() {
-	// Crear un nuevo harness
-	harness, error := domain.NewHarness("dev-flow", "/home/user/proj", "xml")
-	if error != nil {
-		log.Fatalf("Error al crear el harness: %v", error)
-	}
-	// Agregar roles
-	arquitecto, error := domain.NewRole("arquitecto", "#f7768e", "arquitecto.xml", "")
-	if error != nil {
-		log.Fatalf("Error al crear el rol arquitecto: %v", error)
-	}
-	codeReviewer, error := domain.NewRole("code-reviewer", "#7aa2f7", "code-reviewer.xml", "arquitecto")
-	if error != nil {
-		log.Fatalf("Error al crear el rol code-reviewer: %v", error)
-	}
-	devBackend, error := domain.NewRole("dev-backend", "#9ece6a", "dev-backend.xml", "arquitecto")
-	if error != nil {
-		log.Fatalf("Error al crear el rol dev-backend: %v", error)
-	}
-	devFrontend, error := domain.NewRole("dev-frontend", "#e0af68", "dev-frontend.xml", "arquitecto")
-	if error != nil {
-		log.Fatalf("Error al crear el rol dev-frontend: %v", error)
-	}
-	docs, error := domain.NewRole("docs", "#bb9af7", "docs.xml", "")
-	if error != nil {
-		log.Fatalf("Error al crear el rol docs: %v", error)
-	}
+const version = "0.1.0"
 
-	roles := []domain.Role{
-		arquitecto,
-		codeReviewer,
-		devBackend,
-		devFrontend,
-		docs,
-	}
-	for _, role := range roles {
-		error := harness.AddRole(role)
-		if error != nil {
-			log.Fatalf("Error al agregar el rol %s: %v", role.Name, error)
+type model struct {
+	width    int
+	height   int
+	ready    bool
+	showHelp bool
+}
+
+func (m model) Init() tea.Cmd {
+	return nil
+}
+
+func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
+	switch msg := msg.(type) {
+	case tea.KeyMsg:
+		switch msg.String() {
+		case "q", "ctrl+c":
+			return m, tea.Quit
+		case "?":
+			m.showHelp = !m.showHelp
 		}
+	case tea.WindowSizeMsg:
+		m.width = msg.Width
+		m.height = msg.Height
+		m.ready = true
+	}
+	return m, nil
+}
+
+// View retorna el string que se renderiza en la terminal.
+func (m model) View() string {
+	if !m.ready {
+		return "Cargando..."
 	}
 
-	harness.Workflow = []string{"arquitecto", "code-reviewer", "dev-backend", "dev-frontend", "docs"}
+	title := tui.StyleTitle.Render(fmt.Sprintf("lazyharness v%s", version))
 
-	// Serializar a JSON
-	data, error := json.MarshalIndent(harness, "", "  ")
-	if error != nil {
-		log.Fatal(error)
+	subtitle := tui.StyleSubtitle.Render(
+		"Tu harness de agentes,\ndirecto desde la terminal.",
+	)
+
+	help := tui.StyleHelp.Render("(presiona q para salir)\nEscribe '?' para comandos de ayuda.")
+
+	if m.showHelp {
+		help = tui.StyleHelp.Render(
+			"Comandos:\n" +
+				"  q: salir\n" +
+				"  ?: mostrar/ocultar ayuda\n",
+		)
 	}
 
-	fmt.Println("=== Harness como JSON ===")
-	fmt.Println(string(data))
+	content := lipgloss.JoinVertical(
+		lipgloss.Center,
+		"",
+		title,
+		"",
+		subtitle,
+		"",
+		help,
+	)
 
-	// Deserializar y verificar
-	var loaded domain.Harness
-	if err := json.Unmarshal(data, &loaded); err != nil {
-		log.Fatal(err)
-	}
+	// Centrar en la terminal
+	return lipgloss.Place(
+		m.width, m.height,
+		lipgloss.Center, lipgloss.Center,
+		content,
+	)
+}
 
-	fmt.Printf("\n=== Verificacion ===\n")
-	fmt.Printf("Nombre: %s\n", loaded.Name)
-	fmt.Printf("Roles: %d\n", len(loaded.Roles))
-	for _, role := range loaded.Roles {
-		fmt.Printf("  %s\n", role.DisplayName())
+func main() {
+	p := tea.NewProgram(
+		model{},
+		tea.WithAltScreen(),
+	)
+
+	if _, err := p.Run(); err != nil {
+		fmt.Fprintf(os.Stderr, "error: %v\n", err)
+		os.Exit(1)
 	}
-	fmt.Printf("Workflow: %v\n", loaded.Workflow)
 }
