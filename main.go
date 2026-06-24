@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"time"
 
 	"github.com/Gerardo1909/lazyharness/internal/tui"
 	tea "github.com/charmbracelet/bubbletea"
@@ -11,15 +12,26 @@ import (
 
 const version = "0.1.0"
 
+// tickMsg se emite cada segundo para actualizar el contador.
+type tickMsg time.Time
+
+func tickCmd() tea.Cmd {
+	return tea.Tick(time.Second, func(t time.Time) tea.Msg {
+		return tickMsg(t)
+	})
+}
+
 type model struct {
 	width    int
 	height   int
 	ready    bool
 	showHelp bool
+	elapsed  int
 }
 
 func (m model) Init() tea.Cmd {
-	return nil
+	// se retorna para hacer que el loop empiece
+	return tickCmd()
 }
 
 func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
@@ -35,6 +47,9 @@ func (m model) Update(msg tea.Msg) (tea.Model, tea.Cmd) {
 		m.width = msg.Width
 		m.height = msg.Height
 		m.ready = true
+	case tickMsg:
+		m.elapsed++
+		return m, tickCmd()
 	}
 	return m, nil
 }
@@ -71,12 +86,17 @@ func (m model) View() string {
 		help,
 	)
 
-	// Centrar en la terminal
-	return lipgloss.Place(
-		m.width, m.height,
+	// Contenido principal centrado, dejando la última línea para el contador.
+	mainArea := lipgloss.Place(
+		m.width, m.height-1,
 		lipgloss.Center, lipgloss.Center,
 		content,
 	)
+
+	counter := tui.StyleHelp.Render(fmt.Sprintf("⏱ %ds", m.elapsed))
+	footer := lipgloss.NewStyle().Width(m.width).Align(lipgloss.Right).Render(counter)
+
+	return mainArea + "\n" + footer
 }
 
 func main() {
