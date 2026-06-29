@@ -95,16 +95,23 @@ type Harness struct {
 
 // Resumen del harness que se muestra en la primera vista del CLI
 type HarnessSummary struct {
-	Name       string `json:"name"`
-	ProjectDir string `json:"project_dir"`
-	RoleCount  int8   `json:"role_count"`
-	LastCommit string `json:"last_commit"`
-	Provider   string `json:"provider,omitempty"`
+	Name            string `json:"name"`
+	ProjectDir      string `json:"project_dir"`
+	PromptFormat    string `json:"prompt_format"`
+	RoleCount       int    `json:"role_count"`
+	LastCommit      string `json:"last_commit"`
+	TotalCommits    int    `json:"total_commits"`
+	Provider        string `json:"provider,omitempty"`
+	Model           string `json:"model,omitempty"`
+	TasksInProgress int    `json:"tasks_in_progress"`
+	TasksDone       int    `json:"tasks_done"`
+	Roles           []Role `json:"roles"`
+	Workflow        []string `json:"workflow"`
 }
 
 func NewHarness(name string, projectDir string, promptFormat string) (Harness, error) {
 	if name == "" {
-		return Harness{}, fmt.Errorf("El nombre del harness no puede estart vacio")
+		return Harness{}, fmt.Errorf("El nombre del harness no puede estar vacío")
 	}
 	if projectDir == "" {
 		return Harness{}, fmt.Errorf("La ruta del directorio no puede estar vacia")
@@ -148,6 +155,31 @@ func (h Harness) FindRoleByName(name string) (Role, bool) {
 		}
 	}
 	return Role{}, false
+}
+
+// Summary crea un HarnessSummary a partir del harness y su lista de tareas.
+func (h Harness) Summary(tasks []Task) HarnessSummary {
+	inProgress, done := 0, 0
+	for _, t := range tasks {
+		if t.IsInProgress() {
+			inProgress++
+		}
+		if t.IsDone() {
+			done++
+		}
+	}
+	return HarnessSummary{
+		Name:            h.Name,
+		ProjectDir:      h.ProjectDir,
+		PromptFormat:    h.PromptFormat,
+		RoleCount:       len(h.Roles),
+		Provider:        h.Provider,
+		Model:           h.Model,
+		TasksInProgress: inProgress,
+		TasksDone:       done,
+		Roles:           h.Roles,
+		Workflow:        h.Workflow,
+	}
 }
 
 func (h Harness) RoleNames() []string {
